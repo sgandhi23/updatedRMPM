@@ -98,15 +98,6 @@ public class RMPM
           do //getting valid play
           {
               
-                if(lastPlayer == whoseTurn % numPlayers)
-                {
-                    while(plays.size() > 0)
-                    {
-                        plays.remove(0);
-                    }
-                    System.out.println("here2");
-                    roundType = 0;
-                }
                 System.out.println("round type" + roundType);
               System.out.print("Please enter how many cards you'd like to play: ");
             numP = kbd.nextInt();
@@ -163,6 +154,15 @@ public class RMPM
             }
             }
             while(newPlay.size() == 0 && !pass);
+            if(lastPlayer == whoseTurn % numPlayers)
+                {
+                    while(plays.size() > 0)
+                    {
+                        plays.remove(0);
+                    }
+                    System.out.println("here2");
+                    roundType = 0;
+                }
             whoseTurn ++;
             System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         }
