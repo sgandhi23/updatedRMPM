@@ -1,4 +1,5 @@
 
+
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Collections;
@@ -46,7 +47,8 @@ public class RMPM
                 hands.add(0, hands.remove(i));
             }
         }
-
+        
+        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         /*
          hands.add(new ArrayList<Card>());
           hands.add(new ArrayList<Card>());
@@ -121,6 +123,7 @@ public class RMPM
                 dummy = kbd.nextLine();
                 int numHave = cardIndex(hands.get(whoseTurn % numPlayers).getHand(), rmpmValue(cardV)).size();
                 ArrayList<Integer> jokerIndex = cardIndex(hands.get(whoseTurn % numPlayers).getHand(), rmpmValue(0));
+                boolean validPlay = true;
                 if(numP >  numHave && jokerIndex.size() >= 1)//jokers
                 {
                     System.out.println("Would you like to play a joker, enter y or n");
@@ -132,10 +135,19 @@ public class RMPM
                             hands.get(whoseTurn % numPlayers).getHand().get(jokerIndex.get(i)).setNum(cardV);
                         }
                     }
+                    else
+                    {
+                        validPlay= false;
+                    }
                 }
-  
+                numHave = cardIndex(hands.get(whoseTurn % numPlayers).getHand(), rmpmValue(cardV)).size();
+                if(validPlay && numHave >= numP)
+                  {
                     newPlay = play(hands.get(whoseTurn % numPlayers), rmpmValue(cardV), numP);
-                    lastPlayer = whoseTurn % numPlayers;
+                    if(newPlay.size() > 0)
+                    {
+                        lastPlayer = whoseTurn % numPlayers;
+                    }
                    System.out.println("played" + newPlay);
                    System.out.println("plays" + plays);
                    if(hands.get(whoseTurn % numPlayers).getHand().size()==0)
@@ -146,6 +158,7 @@ public class RMPM
                         {
                             plays.remove(0);
                         }
+                    }
                     }
             }
             }
